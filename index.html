@@ -1,0 +1,30 @@
+<html lang="ko">
+<header>
+  <h1>Manchester City FC</h1>
+  <p>25–26 Season Team Players</p>
+</header>
+
+<nav>
+  <button data-position="ALL">ALL</button>
+  <button data-position="GK">GK</button>
+  <button data-position="DF">DF</button>
+  <button data-position="MF">MF</button>
+  <button data-position="FW">FW</button>
+</nav>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="Search player name..." />
+</div>
+
+<main id="player-container"></main>
+
+<!-- 선수 상세 모델 -->
+<div id="modal" class="hidden">
+  <div class="modal-content">
+    <span id="close">&times;</span>
+    <img id="modal-img" />
+    <h2 id="modal-name"></h2>
+    <p id="modal-info"></p>
+  </div>
+</div>
+
