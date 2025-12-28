@@ -1,4 +1,4 @@
-* {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -189,46 +189,5 @@ footer {
   .modal-content {
     width: 90%;
   }
-}
-/* =========================
-   다크모드
-   ========================= */
-body.dark {
-  background-color: #121212;
-  color: #eaeaea;
-}
-
-body.dark header,
-body.dark footer {
-  background-color: #1f1f1f;
-}
-
-body.dark nav button {
-  background: #2a2a2a;
-  color: #eaeaea;
-}
-
-body.dark nav button:hover {
-  background-color: #6cbde9;
-  color: #fff;
-}
-
-body.dark .card {
-  background: #1e1e1e;
-  color: #eaeaea;
-}
-
-body.dark .search-box input {
-  background: #2a2a2a;
-  color: #eaeaea;
-}
-
-body.dark #modal {
-  background: rgba(0,0,0,0.8);
-}
-
-body.dark .modal-content {
-  background: #1e1e1e;
-  color: #eaeaea;
 }
 
