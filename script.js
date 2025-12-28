@@ -38,8 +38,8 @@ const closeBtn = document.getElementById("close");
 
 let currentFilter = "ALL";
 
-// ⭐ 처음 로드시 모달 강제 숨김
-modal.classList.remove("active");
+// 처음 로드시 모달 숨김
+modal.classList.add("hidden");
 
 function displayPlayers(filter = "ALL", keyword = "") {
   container.innerHTML = "";
@@ -49,6 +49,7 @@ function displayPlayers(filter = "ALL", keyword = "") {
       (filter === "ALL" || p.position === filter) &&
       p.name.toLowerCase().includes(keyword.toLowerCase())
     )
+    .sort((a, b) => a.number - b.number) // ⭐ 등번호 오름차순 정렬
     .forEach(player => {
       const card = document.createElement("div");
       card.className = "card";
@@ -72,11 +73,11 @@ function openModal(player) {
   document.getElementById("modal-info").innerText =
     `Position: ${player.position}\nNation: ${player.nation}\nNumber: ${player.number}`;
 
-  modal.classList.add("active");
+  modal.classList.remove("hidden");
 }
 
 closeBtn.addEventListener("click", () => {
-  modal.classList.remove("active");
+  modal.classList.add("hidden");
 });
 
 searchInput.addEventListener("input", () => {
@@ -91,4 +92,3 @@ document.querySelectorAll("nav button").forEach(btn => {
 });
 
 displayPlayers();
-
