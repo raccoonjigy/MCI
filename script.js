@@ -34,7 +34,12 @@ const players = [
 const container = document.getElementById("player-container");
 const modal = document.getElementById("modal");
 const searchInput = document.getElementById("searchInput");
+const closeBtn = document.getElementById("close");
+
 let currentFilter = "ALL";
+
+// ⭐ 처음 로드시 모달 강제 숨김
+modal.classList.remove("active");
 
 function displayPlayers(filter = "ALL", keyword = "") {
   container.innerHTML = "";
@@ -56,7 +61,7 @@ function displayPlayers(filter = "ALL", keyword = "") {
         </div>
       `;
 
-      card.onclick = () => openModal(player);
+      card.addEventListener("click", () => openModal(player));
       container.appendChild(card);
     });
 }
@@ -66,22 +71,23 @@ function openModal(player) {
   document.getElementById("modal-name").innerText = player.name;
   document.getElementById("modal-info").innerText =
     `Position: ${player.position}\nNation: ${player.nation}\nNumber: ${player.number}`;
-  modal.classList.remove("hidden");
+
+  modal.classList.add("active");
 }
 
-document.getElementById("close").onclick = () => {
-  modal.classList.add("hidden");
-};
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("active");
+});
 
 searchInput.addEventListener("input", () => {
   displayPlayers(currentFilter, searchInput.value);
 });
 
 document.querySelectorAll("nav button").forEach(btn => {
-  btn.onclick = () => {
+  btn.addEventListener("click", () => {
     currentFilter = btn.dataset.position;
     displayPlayers(currentFilter, searchInput.value);
-  };
+  });
 });
 
 displayPlayers();
