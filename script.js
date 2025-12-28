@@ -38,9 +38,7 @@ const closeBtn = document.getElementById("close");
 
 let currentFilter = "ALL";
 
-// 처음 로드시 모달 숨김
-modal.classList.add("hidden");
-
+/* 선수 렌더링 */
 function displayPlayers(filter = "ALL", keyword = "") {
   container.innerHTML = "";
 
@@ -49,7 +47,7 @@ function displayPlayers(filter = "ALL", keyword = "") {
       (filter === "ALL" || p.position === filter) &&
       p.name.toLowerCase().includes(keyword.toLowerCase())
     )
-    .sort((a, b) => a.number - b.number) // ⭐ 등번호 오름차순 정렬
+    .sort((a, b) => a.number - b.number)
     .forEach(player => {
       const card = document.createElement("div");
       card.className = "card";
@@ -67,36 +65,27 @@ function displayPlayers(filter = "ALL", keyword = "") {
     });
 }
 
+/* 모달 열기 */
 function openModal(player) {
   document.getElementById("modal-img").src = player.img;
   document.getElementById("modal-name").innerText = player.name;
   document.getElementById("modal-info").innerText =
     `Position: ${player.position}\nNation: ${player.nation}\nNumber: ${player.number}`;
 
-  modal.classList.remove("hidden");
+  modal.classList.add("active");
 }
 
-closeBtn.addEventListener("click", () => {
-modal.classList.remove("active");
-
-function openModal(player) {
-  document.getElementById("modal-img").src = player.img;
-  document.getElementById("modal-name").innerText = player.name;
-  document.getElementById("modal-info").innerText =
-    `Position: ${player.position}\nNation: ${player.nation}\nNumber: ${player.number}`;
-
-  modal.classList.add("active"); // ⭐ 애니메이션 정상 작동
-}
-
+/* 모달 닫기 */
 closeBtn.addEventListener("click", () => {
   modal.classList.remove("active");
 });
-});
 
+/* 검색 */
 searchInput.addEventListener("input", () => {
   displayPlayers(currentFilter, searchInput.value);
 });
 
+/* 포지션 필터 */
 document.querySelectorAll("nav button").forEach(btn => {
   btn.addEventListener("click", () => {
     currentFilter = btn.dataset.position;
@@ -104,5 +93,5 @@ document.querySelectorAll("nav button").forEach(btn => {
   });
 });
 
+/* 최초 실행 */
 displayPlayers();
-
