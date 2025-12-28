@@ -62,10 +62,10 @@ nav button:hover {
    ========================= */
 main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* ⭐ 핵심 수정 */
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
   padding: 30px;
-  max-width: 1200px; /* ⭐ 중앙 정렬 + 크기 고정 */
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -85,8 +85,8 @@ main {
 
 .card img {
   width: 100%;
-  height: 280px; /* ⭐ 카드 크기 조정 */
-  object-fit: cover;
+  height: 280px;
+  object-fit: cover; /* PC에서는 꽉 차게 */
 }
 
 .card .info {
@@ -181,7 +181,9 @@ footer {
   }
 
   .card img {
-    height: 220px;
+    height: 160px;          /* 모바일에서 높이 줄임 */
+    object-fit: contain;   /* ⭐ 얼굴 안 잘리게 핵심 */
+    background-color: #111;
   }
 
   .modal-content {
