@@ -1,32 +1,44 @@
+<!DOCTYPE html>
 <html lang="ko">
-<header>
-  <h1>Manchester City FC</h1>
-  <p>25–26 Season Team Players</p>
-</header>
+<head>
+  <meta charset="UTF-8">
+  <title>Manchester City FC 25–26 Squad</title>
 
-<nav>
-  <button data-position="ALL">ALL</button>
-  <button data-position="GK">GK</button>
-  <button data-position="DF">DF</button>
-  <button data-position="MF">MF</button>
-  <button data-position="FW">FW</button>
-</nav>
+  <!-- CSS 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<div class="search-box">
-  <input type="text" id="searchInput" placeholder="Search player name..." />
-</div>
+  <header>
+    <h1>Manchester City FC</h1>
+    <p>25–26 Season Team Players</p>
+  </header>
 
-<main id="player-container"></main>
+  <nav>
+    <button data-position="ALL">ALL</button>
+    <button data-position="GK">GK</button>
+    <button data-position="DF">DF</button>
+    <button data-position="MF">MF</button>
+    <button data-position="FW">FW</button>
+  </nav>
 
-<!-- 선수 상세 모델 -->
-<div id="modal" class="hidden">
-  <div class="modal-content">
-    <span id="close">&times;</span>
-    <img id="modal-img" />
-    <h2 id="modal-name"></h2>
-    <p id="modal-info"></p>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search player name..." />
   </div>
-</div>
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
 
+  <main id="player-container"></main>
+
+  <!-- 선수 상세 모달 -->
+  <div id="modal" class="hidden">
+    <div class="modal-content">
+      <span id="close">&times;</span>
+      <img id="modal-img" />
+      <h2 id="modal-name"></h2>
+      <p id="modal-info"></p>
+    </div>
+  </div>
+
+  <!-- JS 연결 -->
+  <script src="script.js"></script>
+</body>
+</html>
