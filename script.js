@@ -1,3 +1,6 @@
+/*************************
+ * 선수 데이터
+ *************************/
 const players = [
   { name: "James Trafford", position: "GK", number: 1, nation: "England", img: "https://i.namu.wiki/i/a6fI3pYtVN-MoetQnaRm0e8mMHA-dK8v2D1i5kJsrzeMsacerdzkyajWTK7EbiNHalblWXWXidZk2HsIqu7WoebiVTo-KG1EBlvijSWvKLKNeuTwvFo_18OmuzVx9D_iLbeZIOLFccDyrmGArB3-WXUOS9lbBSnlY0vEVlFbwBQ.webp" },
   { name: "Marcus Bettinelli", position: "GK", number: 13, nation: "England", img: "https://i.namu.wiki/i/a6fI3pYtVN-MoetQnaRm0YESZ2DbtgYKjKzj8i36fjfj5FzJVkz8zqdcIu7I6tPslrNn9VFOKf7ceD98z38HYp7Jfe7WELuZ2HZPCyiXlHp9ftWh4Vcb9QO2sqS2aNQFEPudfXT2cZDX9QvqvCJeRKJhNF5RiXF1hX0LRWS1lbs.webp" },
@@ -31,6 +34,28 @@ const players = [
   { name: "Oscar Bobb", position: "FW", number: 52, nation: "Norway", img: "https://i.namu.wiki/i/a6fI3pYtVN-MoetQnaRm0V2tYG7SxFPJk2HiBtJdaRJUgUpa3T3LxSAbEnk40JG4CuDFVdSSFgm1Jzhip5mRFeLx7tDHCDc6OL-war3CTmX8ANMBE76TNvmPiRWH5kjfzaSyWNCfIaF4JrGRrWFl-TCdSM-TqUf3wqBaZmsxi8o.webp" }
 ];
 
+/*************************
+ * 주장 정보
+ *************************/
+const captainMap = {
+  "Bernardo Silva": "C",
+  "Ruben Dias": "VC",
+  "Rodri": "3C",
+  "Erling Haaland": "4C"
+};
+
+/*************************
+ * 언어 설정
+ *************************/
+let currentLang = "en";
+const langText = {
+  en: { position: "Position", nation: "Nation", number: "Number" },
+  ko: { position: "포지션", nation: "국적", number: "등번호" }
+};
+
+/*************************
+ * DOM
+ *************************/
 const container = document.getElementById("player-container");
 const modal = document.getElementById("modal");
 const searchInput = document.getElementById("searchInput");
@@ -38,7 +63,9 @@ const closeBtn = document.getElementById("close");
 
 let currentFilter = "ALL";
 
-/* 선수 렌더링 */
+/*************************
+ * 선수 출력
+ *************************/
 function displayPlayers(filter = "ALL", keyword = "") {
   container.innerHTML = "";
 
@@ -52,7 +79,12 @@ function displayPlayers(filter = "ALL", keyword = "") {
       const card = document.createElement("div");
       card.className = "card";
 
+      const badge = captainMap[player.name]
+        ? `<span class="role-badge">${captainMap[player.name]}</span>`
+        : "";
+
       card.innerHTML = `
+        ${badge}
         <img src="${player.img}">
         <div class="info">
           <h3>${player.name}</h3>
@@ -65,27 +97,31 @@ function displayPlayers(filter = "ALL", keyword = "") {
     });
 }
 
-/* 모달 열기 */
+/*************************
+ * 모달
+ *************************/
 function openModal(player) {
   document.getElementById("modal-img").src = player.img;
   document.getElementById("modal-name").innerText = player.name;
   document.getElementById("modal-info").innerText =
-    `Position: ${player.position}\nNation: ${player.nation}\nNumber: ${player.number}`;
+    `${langText[currentLang].position}: ${player.position}
+${langText[currentLang].nation}: ${player.nation}
+${langText[currentLang].number}: ${player.number}`;
 
   modal.classList.add("active");
 }
 
-/* 모달 닫기 */
 closeBtn.addEventListener("click", () => {
   modal.classList.remove("active");
 });
 
-/* 검색 */
+/*************************
+ * 검색 / 필터
+ *************************/
 searchInput.addEventListener("input", () => {
   displayPlayers(currentFilter, searchInput.value);
 });
 
-/* 포지션 필터 */
 document.querySelectorAll("nav button").forEach(btn => {
   btn.addEventListener("click", () => {
     currentFilter = btn.dataset.position;
@@ -93,5 +129,23 @@ document.querySelectorAll("nav button").forEach(btn => {
   });
 });
 
-/* 최초 실행 */
+/*************************
+ * 다크모드 / 언어 토글
+ *************************/
+const darkToggle = document.getElementById("darkToggle");
+if (darkToggle) {
+  darkToggle.onclick = () => document.body.classList.toggle("dark");
+}
+
+const langToggle = document.getElementById("langToggle");
+if (langToggle) {
+  langToggle.onclick = () => {
+    currentLang = currentLang === "en" ? "ko" : "en";
+    displayPlayers(currentFilter, searchInput.value);
+  };
+}
+
+/*************************
+ * 시작
+ *************************/
 displayPlayers();
