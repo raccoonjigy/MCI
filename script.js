@@ -77,7 +77,20 @@ function openModal(player) {
 }
 
 closeBtn.addEventListener("click", () => {
-  modal.classList.add("hidden");
+modal.classList.remove("active");
+
+function openModal(player) {
+  document.getElementById("modal-img").src = player.img;
+  document.getElementById("modal-name").innerText = player.name;
+  document.getElementById("modal-info").innerText =
+    `Position: ${player.position}\nNation: ${player.nation}\nNumber: ${player.number}`;
+
+  modal.classList.add("active"); // ⭐ 애니메이션 정상 작동
+}
+
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("active");
+});
 });
 
 searchInput.addEventListener("input", () => {
@@ -92,3 +105,4 @@ document.querySelectorAll("nav button").forEach(btn => {
 });
 
 displayPlayers();
+
