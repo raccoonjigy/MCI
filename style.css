@@ -62,10 +62,10 @@ nav button:hover {
    ========================= */
 main {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* ⭐ 핵심 수정 */
   gap: 24px;
   padding: 30px;
-  max-width: 1200px;
+  max-width: 1200px; /* ⭐ 중앙 정렬 + 크기 고정 */
   margin: 0 auto;
 }
 
@@ -85,50 +85,13 @@ main {
 
 .card img {
   width: 100%;
-  height: 280px;
+  height: 280px; /* ⭐ 카드 크기 조정 */
   object-fit: cover;
 }
 
 .card .info {
   padding: 15px;
   text-align: center;
-}
-
-/* =========================
-   주장 배지 스타일 ⭐
-   ========================= */
-.captain {
-  display: inline-block;
-  margin-left: 6px;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 12px;
-  vertical-align: middle;
-}
-
-/* 주장 */
-.captain.c {
-  background: gold;
-  color: #333;
-}
-
-/* 부주장 */
-.captain.vc {
-  background: silver;
-  color: #333;
-}
-
-/* 3주장 */
-.captain.c3 {
-  background: #cd7f32; /* bronze */
-  color: white;
-}
-
-/* 4주장 */
-.captain.c4 {
-  background: #6cbde9;
-  color: white;
 }
 
 /* 푸터 */
@@ -203,12 +166,15 @@ footer {
 /* =========================
    반응형
    ========================= */
+
+/* 태블릿: 2명 */
 @media (max-width: 1024px) {
   main {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* 모바일: 1명 */
 @media (max-width: 600px) {
   main {
     grid-template-columns: 1fr;
